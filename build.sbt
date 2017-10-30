@@ -1,6 +1,6 @@
 inThisBuild(Seq(
   organization := "org.portable-scala",
-  version := "1.0.0-M1",
+  version := "1.0.0-SNAPSHOT",
 
   scalaVersion := "2.12.3",
   scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "UTF-8"),
