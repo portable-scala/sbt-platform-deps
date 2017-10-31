@@ -24,6 +24,7 @@ lazy val `sbt-platform-deps` = project.in(file(".")).
     scriptedBufferLog := false,
 
     // Publish to Bintray, without the sbt-bintray plugin
+    publishMavenStyle := false,
     publishTo := {
       val proj = moduleName.value
       val ver = version.value
