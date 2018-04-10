@@ -1,6 +1,8 @@
+val previousVersion = "1.0.0"
+
 inThisBuild(Seq(
   organization := "org.portable-scala",
-  version := "1.0.0",
+  version := "1.0.1-SNAPSHOT",
 
   scalaVersion := "2.12.3",
   scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "UTF-8"),
@@ -22,6 +24,14 @@ lazy val `sbt-platform-deps` = project.in(file(".")).
 
     scriptedLaunchOpts += "-Dplugin.version=" + version.value,
     scriptedBufferLog := false,
+
+    // MiMa setup
+    mimaPreviousArtifacts ++= {
+      val dependency = organization.value % moduleName.value % previousVersion
+      val sbtV = (sbtBinaryVersion in pluginCrossBuild).value
+      val scalaV = (scalaBinaryVersion in update).value
+      Set(Defaults.sbtPluginExtra(dependency, sbtV, scalaV))
+    },
 
     // Publish to Bintray, without the sbt-bintray plugin
     publishMavenStyle := false,

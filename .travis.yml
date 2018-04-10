@@ -9,7 +9,7 @@ matrix:
       env: SBT_VERSION=0.13.16
 
 script:
-  - sbt "++$TRAVIS_SCALA_VERSION" "^^$SBT_VERSION" publishLocal scripted
+  - sbt "++$TRAVIS_SCALA_VERSION" "^^$SBT_VERSION" mimaReportBinaryIssues publishLocal scripted
 
 cache:
   directories:
