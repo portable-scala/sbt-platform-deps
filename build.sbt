@@ -7,6 +7,8 @@ inThisBuild(Seq(
   organization := "org.portable-scala",
   version := "1.0.1-SNAPSHOT",
 
+  versionScheme := Some("semver-spec"),
+
   crossScalaVersions := Seq("2.12.3", "2.10.6"),
   scalaVersion := "2.12.3",
   scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "UTF-8"),
