@@ -33,21 +33,15 @@ lazy val `sbt-platform-deps` = project.in(file(".")).
       Set(Defaults.sbtPluginExtra(dependency, sbtV, scalaV))
     },
 
-    // Publish to Bintray, without the sbt-bintray plugin
-    publishMavenStyle := false,
+    // Publishing
+    publishMavenStyle := true,
     publishTo := {
-      val proj = moduleName.value
-      val ver = version.value
-      if (isSnapshot.value) {
-        None // Bintray does not support snapshots
-      } else {
-        val url = new java.net.URL(
-            s"https://api.bintray.com/content/portable-scala/sbt-plugins/$proj/$ver")
-        val patterns = Resolver.ivyStylePatterns
-        Some(Resolver.url("bintray", url)(patterns))
-      }
+      val nexus = "https://oss.sonatype.org/"
+      if (version.value.endsWith("-SNAPSHOT"))
+        Some("snapshots" at nexus + "content/repositories/snapshots")
+      else
+        Some("releases" at nexus + "service/local/staging/deploy/maven2")
     },
-
     pomExtra := (
       <developers>
         <developer>
