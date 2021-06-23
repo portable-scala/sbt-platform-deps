@@ -21,8 +21,13 @@ jobs:
         with:
           java-version: "adopt@1.8"
       - uses: coursier/cache-action@v5
+
+      # MiMa is not run for the sbt 0.13.x artifact because there is no version
+      # of sbt-mima that works with sbt 1.5.x and for Scala 2.10.x.
       - name: MiMa
+        if: matrix.scalaversion != '2.10.6'
         run: sbt "++${{ matrix.scalaversion }}" "^^${{ env.SBT_VERSION }}" mimaReportBinaryIssues
+
       - name: Build
         run: sbt "++${{ matrix.scalaversion }}" "^^${{ env.SBT_VERSION }}" publishLocal
       - name: Test

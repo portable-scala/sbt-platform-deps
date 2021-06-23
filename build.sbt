@@ -1,9 +1,13 @@
 val previousVersion = "1.0.0"
 
+// Work around https://github.com/sbt/sbt/issues/6571
+Global / excludeLintKeys += crossSbtVersions
+
 inThisBuild(Seq(
   organization := "org.portable-scala",
   version := "1.0.1-SNAPSHOT",
 
+  crossScalaVersions := Seq("2.12.3", "2.10.6"),
   scalaVersion := "2.12.3",
   scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "UTF-8"),
 
@@ -19,17 +23,16 @@ inThisBuild(Seq(
 ))
 
 lazy val `sbt-platform-deps` = project.in(file(".")).
+  enablePlugins(SbtPlugin).
   settings(
-    sbtPlugin := true,
-
     scriptedLaunchOpts += "-Dplugin.version=" + version.value,
     scriptedBufferLog := false,
 
     // MiMa setup
     mimaPreviousArtifacts ++= {
       val dependency = organization.value % moduleName.value % previousVersion
-      val sbtV = (sbtBinaryVersion in pluginCrossBuild).value
-      val scalaV = (scalaBinaryVersion in update).value
+      val sbtV = (pluginCrossBuild / sbtBinaryVersion).value
+      val scalaV = (update / scalaBinaryVersion).value
       Set(Defaults.sbtPluginExtra(dependency, sbtV, scalaV))
     },
 
