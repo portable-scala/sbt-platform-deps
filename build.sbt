@@ -1,11 +1,11 @@
-val previousVersion = "1.0.0"
+val previousVersion = "1.0.1"
 
 // Work around https://github.com/sbt/sbt/issues/6571
 Global / excludeLintKeys += crossSbtVersions
 
 inThisBuild(Seq(
   organization := "org.portable-scala",
-  version := "1.0.1",
+  version := "1.0.2-SNAPSHOT",
 
   versionScheme := Some("semver-spec"),
 
