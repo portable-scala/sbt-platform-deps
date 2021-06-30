@@ -5,7 +5,7 @@ Global / excludeLintKeys += crossSbtVersions
 
 inThisBuild(Seq(
   organization := "org.portable-scala",
-  version := "1.0.1-SNAPSHOT",
+  version := "1.0.1",
 
   versionScheme := Some("semver-spec"),
 
