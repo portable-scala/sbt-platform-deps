@@ -14,6 +14,7 @@ inThisBuild(Seq(
   scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "UTF-8"),
 
   crossSbtVersions := Seq("1.0.2", "0.13.16"),
+  sbtVersion in pluginCrossBuild := "1.0.2",
 
   homepage := Some(url("https://github.com/portable-scala/sbt-platform-deps")),
   licenses += ("BSD 3-Clause",
