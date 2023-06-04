@@ -8,11 +8,11 @@ It should not be directly used.
 
 ## Latest release
 
-The latest release is 1.0.1.
+The latest release is 1.0.2.
 It can be depended on with
 
 ```scala
-addSbtPlugin("org.portable-scala" % "sbt-platform-deps" % "1.0.1")
+addSbtPlugin("org.portable-scala" % "sbt-platform-deps" % "1.0.2")
 ```
 
 As a user, you should typically never depend on sbt-platform-deps.
